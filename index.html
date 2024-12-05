@@ -5,80 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avik Pramanick - Portfolio</title>
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            color: #333;
+            background: #f9f9f9;
             line-height: 1.6;
         }
+
         header {
-            background: #4CAF50;
-            color: black;
-            padding: 20px 10px;
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            color: white;
+            padding: 20px;
             text-align: center;
         }
+
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+            font-size: 3rem;
+            letter-spacing: 2px;
         }
+
+        header p {
+            margin: 10px 0 20px;
+            font-size: 1.2rem;
+        }
+
+        header a {
+            color: white;
+            background: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        header a:hover {
+            background: #555;
+        }
+
         nav {
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 10px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            background: #333;
+            padding: 10px 0;
         }
+
         nav a {
+            color: white;
             margin: 0 15px;
             text-decoration: none;
-            color: #333;
+            font-size: 1.1rem;
+            transition: color 0.3s;
         }
+
+        nav a:hover {
+            color: #81C784;
+        }
+
         section {
-            margin: 20px auto;
-            max-width: 800px;
-            padding: 10px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
-        h1, h2 {
+
+        h2 {
             color: #4CAF50;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
+
         h2 a {
             color: #4CAF50;
             text-decoration: none;
         }
+
         h2 a:hover {
             text-decoration: underline;
         }
+
         .project-category {
-            margin-top: 20px;
+            margin-top: 30px;
         }
+
         .project-category h3 {
+            font-size: 1.5rem;
             background: #f4f4f4;
             padding: 10px;
+            border-left: 4px solid #4CAF50;
         }
+
         .project {
             margin-left: 20px;
+            padding: 5px 0;
         }
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
+
         ul li {
-            padding: 5px 0;
+            margin-bottom: 10px;
         }
+
+        footer {
+            text-align: center;
+            background: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #81C784;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         .highlighted-header {
             text-align: center;
             color: orange;
             font-size: 1.8rem;
             font-weight: bold;
             margin: 20px 0;
-            border: 2px solid black; /* Black border for the title */
+            border: 2px solid black;
             padding: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 10px;
+            }
+
+            section {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
@@ -86,8 +178,8 @@
     <header>
         <h1>Avik Pramanick</h1>
         <p>M.Tech Student, IIT Kharagpur</p>
-        <p><a href="https://github.com/Avikg" target="_blank" style="color: white; text-decoration: underline;">Visit My GitHub</a></p>
-        <p><a href="resume1.pdf" download style="color: white; text-decoration: underline;">Download CV</a></p>
+        <a href="https://github.com/Avikg" target="_blank">Visit My GitHub</a>
+        <a href="resume1.pdf" download>Download CV</a>
     </header>
     
     <nav>
@@ -97,7 +189,9 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    
+    <div class="highlighted-header">
+        Classification of TSS Signals for Association with hg-19 Cage Tags
+    </div>
     
     <section id="education">
         <h2>Education</h2>
@@ -139,23 +233,6 @@
             <p class="project">- OS Programming</p>
             <p class="project">- Web Scrapping using Python</p>
         </div>
-        <div class="project-category">
-            <h3>Design Lab Projects</h3>
-            <p class="project">- Chat Server with GPT-2 Chatbot</p>
-            <p class="project">- Crawling COVID Statistics and News</p>
-            <p class="project">- Deep Learning with PyTorch</p>
-            <p class="project">- Machine Learning using scikit-learn</p>
-        </div>
-        <div class="project-category">
-            <h3>Distributed Systems</h3>
-            <p class="project">- Distributed Database with Sharding and WAL</p>
-            <p class="project">- Customizable Load Balancer</p>
-            <p class="project">- Scalable Database with Sharding</p>
-        </div>
-        <div class="project-category">
-            <h3>Deep Learning Project</h3>
-            <p class="project">- Automatic Image Captioning</p>
-        </div>
     </section>
     
     <section id="skills">
@@ -176,7 +253,7 @@
     </section>
     
     <footer>
-        <p>&copy; 2024 Avik Pramanick. All rights reserved.</p>
+        <p>&copy; 2024 Avik Pramanick. All rights reserved. | <a href="https://github.com/Avikg">GitHub</a></p>
     </footer>
 </body>
 </html>
