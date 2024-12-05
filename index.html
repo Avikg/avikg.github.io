@@ -41,6 +41,13 @@
         h1, h2 {
             color: #4CAF50;
         }
+        h2 a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        h2 a:hover {
+            text-decoration: underline;
+        }
         .project-category {
             margin-top: 20px;
         }
@@ -70,7 +77,7 @@
             font-size: 1.8rem;
             font-weight: bold;
             margin: 20px 0;
-            border: 2px solid black; /* Added black border */
+            border: 2px solid black; /* Black border for the title */
             padding: 10px;
         }
     </style>
@@ -89,6 +96,8 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
     </nav>
+
+    
     
     <section id="education">
         <h2>Education</h2>
@@ -108,7 +117,7 @@
     </section>
     
     <section id="projects">
-        <h2>Projects</h2>
+        <h2><a href="https://github.com/Avikg/projects" target="_blank">Projects</a></h2>
         <div class="project-category">
             <h3>Major MTP Projects</h3>
             <ul>
