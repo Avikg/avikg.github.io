@@ -4,268 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avik Pramanick - Portfolio</title>
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background: #f9f9f9;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(90deg, #4CAF50, #81C784);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-            letter-spacing: 2px;
-        }
-
-        header p {
-            margin: 10px 0 20px;
-            font-size: 1.2rem;
-        }
-
-        header a {
-            color: white;
-            background: #333;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        header a:hover {
-            background: #555;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #333;
-            padding: 10px 0;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #81C784;
-        }
-
-        section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        h2 {
-            color: #4CAF50;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        h2 a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        h2 a:hover {
-            text-decoration: underline;
-        }
-
-        .project-category {
-            margin-top: 30px;
-        }
-
-        .project-category h3 {
-            font-size: 1.5rem;
-            background: #f4f4f4;
-            padding: 10px;
-            border-left: 4px solid #4CAF50;
-        }
-
-        .project {
-            margin-left: 20px;
-            padding: 5px 0;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-
-        footer {
-            text-align: center;
-            background: #333;
-            color: white;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        footer a {
-            color: #81C784;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .highlighted-header {
-            text-align: center;
-            color: orange;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 20px 0;
-            border: 2px solid black;
-            padding: 10px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        /* Keyframes for fade-in animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-
-            nav a {
-                font-size: 1rem;
-                margin: 0 10px;
-            }
-
-            section {
-                margin: 20px;
-                padding: 15px;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<body>
-    <header>
-        <h1>Avik Pramanick</h1>
-        <p>M.Tech Student, IIT Kharagpur</p>
-        <a href="https://github.com/Avikg" target="_blank">Visit My GitHub</a>
-        <a href="resume1.pdf" download>Download CV</a>
+<body class="bg-gray-100 text-gray-900">
+    
+    <header class="bg-gradient-to-r from-green-500 to-green-700 text-white text-center py-10">
+        <h1 class="text-5xl font-bold">Avik Pramanick</h1>
+        <p class="text-lg mt-2">M.Tech Student, IIT Kharagpur</p>
+        <div class="mt-4">
+            <a href="https://github.com/Avikg" target="_blank" class="bg-gray-900 px-6 py-2 rounded-md hover:bg-gray-700 transition">Visit My GitHub</a>
+            <a href="resume1.pdf" download class="bg-gray-900 px-6 py-2 rounded-md hover:bg-gray-700 transition ml-3">Download CV</a>
+        </div>
     </header>
-    
-    <nav>
-        <a href="#education">Education</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
 
+    <nav class="flex justify-center bg-gray-900 py-3 space-x-6">
+        <a href="#education" class="text-white hover:text-green-400 transition">Education</a>
+        <a href="#projects" class="text-white hover:text-green-400 transition">Projects</a>
+        <a href="#skills" class="text-white hover:text-green-400 transition">Skills</a>
+        <a href="#contact" class="text-white hover:text-green-400 transition">Contact</a>
+    </nav>
     
-    
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>
-                <strong>M.Tech in Computer Science and Engineering</strong><br>
-                IIT Kharagpur, 2025<br>
-                CGPA: 8.59/10
-            </li>
-            <li>
-                <strong>B.Tech in Computer Science and Engineering</strong><br>
-                Govt. College of Engineering and Textile Technology, Serampore (MAKAUT)<br>
-                CGPA: 8.44/10
-            </li>
+    <section id="education" class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 my-10 opacity-0">
+        <h2 class="text-3xl font-bold text-green-600 mb-4">Education</h2>
+        <ul class="list-disc pl-6">
+            <li class="mb-3"><strong>M.Tech in Computer Science and Engineering</strong> - IIT Kharagpur, 2025 (CGPA: 8.59/10)</li>
+            <li><strong>B.Tech in Computer Science and Engineering</strong> - Govt. College of Engineering and Textile Technology, Serampore (CGPA: 8.44/10)</li>
         </ul>
     </section>
     
-    <section id="projects">
-        <h2><a href="https://github.com/Avikg/projects" target="_blank">Projects</a></h2>
-        <div class="project-category">
-            <h3>Major MTP Projects</h3>
-            <ul>
-                <li>
-                    <strong>Classification of TSS Signals for Association with hg-19 Cage Tags</strong><br>
-                    Web Server: <a href="https://cosmos.iitkgp.ac.in/CAGETag/" target="_blank">CAGE Tag Web Server</a>
-                </li>
-                <li>
-                    <strong>DeepPROTECTNeo</strong><br>
-                    Web Server: <a href="https://cosmos.iitkgp.ac.in/DeepPROTECTNeo/" target="_blank">DeepPROTECTNeo Web Server</a>
-                </li>
-            </ul>
-        </div>
-        <div class="project-category">
-            <h3>Computing Lab Projects</h3>
-            <p class="project">- Linear Programming and Integer Programming</p>
-            <p class="project">- Multi-threading</p>
-            <p class="project">- Network Programming</p>
-            <p class="project">- OS Programming</p>
-            <p class="project">- Web Scrapping using Python</p>
-        </div>
-        <div class="project-category">
-            <h3>Design Lab Projects</h3>
-            <p class="project">- Chat Server with GPT-2 Chatbot</p>
-            <p class="project">- Crawling COVID Statistics and News</p>
-            <p class="project">- Deep Learning with PyTorch</p>
-            <p class="project">- Machine Learning using scikit-learn</p>
-        </div>
-        <div class="project-category">
-            <h3>Distributed Systems</h3>
-            <p class="project">- Distributed Database with Sharding and Consistency Using Write-Ahead Logging (WAL)</p>
-        </div>
-        <div class="project-category">
-            <h3>Deep Learning Projects</h3>
-            <p class="project">- Automatic Image Captioning</p>
+    <section id="projects" class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 my-10 opacity-0">
+        <h2 class="text-3xl font-bold text-green-600 mb-4">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-gray-100 p-5 rounded-lg shadow-md hover:scale-105 transition transform">
+                <h3 class="text-xl font-bold">Classification of TSS Signals</h3>
+                <a href="https://cosmos.iitkgp.ac.in/CAGETag/" class="text-green-500 underline">Visit Web Server</a>
+            </div>
+            <div class="bg-gray-100 p-5 rounded-lg shadow-md hover:scale-105 transition transform">
+                <h3 class="text-xl font-bold">DeepPROTECTNeo</h3>
+                <a href="https://cosmos.iitkgp.ac.in/DeepPROTECTNeo/" class="text-green-500 underline">Visit Web Server</a>
+            </div>
         </div>
     </section>
     
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Programming Languages: Python, C, Java, HTML, CSS, JavaScript, PHP</li>
-            <li>Frameworks & Libraries: PyTorch, TensorFlow, Keras, Scikit-Learn, Numpy, Pandas</li>
-            <li>Tools & Technologies: Docker, Git/GitHub, Socket Programming, Thread Programming</li>
-            <li>Databases: SQL, NoSQL</li>
+    <section id="skills" class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 my-10 opacity-0">
+        <h2 class="text-3xl font-bold text-green-600 mb-4">Skills</h2>
+        <ul class="list-disc pl-6">
+            <li>Python, C, Java, HTML, CSS, JavaScript, PHP</li>
+            <li>PyTorch, TensorFlow, Scikit-Learn, Numpy, Pandas</li>
+            <li>Docker, Git/GitHub, SQL, NoSQL</li>
         </ul>
     </section>
     
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:avik.pramanick@gmail.com">avik.pramanick@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/avik-iitian/" target="_blank">Avik's LinkedIn</a></p>
-        <p>GitHub: <a href="https://github.com/Avikg" target="_blank">Avikg</a></p>
+    <section id="contact" class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 my-10 opacity-0">
+        <h2 class="text-3xl font-bold text-green-600 mb-4">Contact</h2>
+        <p>Email: <a href="mailto:avik.pramanick@gmail.com" class="text-green-500 underline">avik.pramanick@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/avik-iitian/" class="text-green-500 underline">Avik's LinkedIn</a></p>
+        <p>GitHub: <a href="https://github.com/Avikg" class="text-green-500 underline">Avikg</a></p>
     </section>
     
-    <footer>
-        <p>&copy; 2024 Avik Pramanick. All rights reserved. | <a href="https://github.com/Avikg">GitHub</a></p>
+    <footer class="bg-gray-900 text-white text-center py-6 mt-10">
+        <p>&copy; 2024 Avik Pramanick. All rights reserved.</p>
     </footer>
+    
+    <script>
+        gsap.from("header h1", { opacity: 0, y: -50, duration: 1.2 });
+        gsap.from("header p", { opacity: 0, y: 20, delay: 0.3, duration: 1 });
+        gsap.from("header a", { opacity: 0, scale: 0.8, stagger: 0.2, delay: 0.5, duration: 0.8 });
+        
+        gsap.to("section", { opacity: 1, stagger: 0.4, duration: 1, scrollTrigger: { trigger: "section", start: "top 80%" } });
+    </script>
+    
 </body>
 </html>
