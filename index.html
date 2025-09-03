@@ -263,6 +263,39 @@
             margin-top: 20px;
         }
 
+        @media (min-width: 1024px) {
+            .about-text {
+                margin-left: 3rem;
+                padding: 2.5rem;
+            }
+            
+            .about-grid {
+                padding: 0 3rem;
+                gap: 5rem;
+            }
+            
+            .section .container {
+                padding: 0 4rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .about-text {
+                margin-left: 4rem;
+                padding: 3rem;
+            }
+            
+            .about-grid {
+                padding: 0 4rem;
+                gap: 6rem;
+                grid-template-columns: 1.2fr 1fr;
+            }
+            
+            .section .container {
+                padding: 0 5rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
