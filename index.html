@@ -3,269 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avik Pramanick - Portfolio</title>
+    <title>Avik Pramanick - ML Engineer & Computer Scientist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Global Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             color: #333;
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #667eea;
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .education-card, .experience-card, .project-card {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .education-card:hover, .experience-card:hover, .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .card-subtitle {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: #555;
             line-height: 1.6;
         }
 
-        header {
-            background: linear-gradient(90deg, #4CAF50, #81C784);
-            color: white;
-            padding: 20px;
-            text-align: center;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
-        header h1 {
-            margin: 0;
+        .skill-category {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9ff;
+            border-radius: 15px;
+        }
+
+        .skill-icon {
             font-size: 3rem;
-            letter-spacing: 2px;
+            color: #667eea;
+            margin-bottom: 1rem;
         }
 
-        header p {
-            margin: 10px 0 20px;
-            font-size: 1.2rem;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
         }
 
-        header a {
-            color: white;
-            background: #333;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
+        .contact-item {
+            padding: 2rem;
+            background: #f8f9ff;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
         }
 
-        header a:hover {
-            background: #555;
+        .contact-item:hover {
+            transform: translateY(-5px);
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #333;
-            padding: 10px 0;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #81C784;
-        }
-
-        section {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        h2 {
-            color: #4CAF50;
+        .contact-item i {
             font-size: 2rem;
-            margin-bottom: 20px;
+            color: #667eea;
+            margin-bottom: 1rem;
         }
 
-        h2 a {
-            color: #4CAF50;
+        .contact-item a {
+            color: #333;
             text-decoration: none;
         }
 
-        h2 a:hover {
-            text-decoration: underline;
-        }
-
-        .project-category {
-            margin-top: 30px;
-        }
-
-        .project-category h3 {
-            font-size: 1.5rem;
-            background: #f4f4f4;
-            padding: 10px;
-            border-left: 4px solid #4CAF50;
-        }
-
-        .project {
-            margin-left: 20px;
-            padding: 5px 0;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-
-        footer {
+        .footer {
             text-align: center;
-            background: #333;
+            padding: 2rem;
             color: white;
-            padding: 20px;
-            margin-top: 30px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 20px;
+            margin-top: 20px;
         }
 
-        footer a {
-            color: #81C784;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .highlighted-header {
-            text-align: center;
-            color: orange;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 20px 0;
-            border: 2px solid black;
-            padding: 10px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        /* Keyframes for fade-in animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            header h1 {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
                 font-size: 2.5rem;
             }
-
-            nav a {
-                font-size: 1rem;
-                margin: 0 10px;
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-
-            section {
-                margin: 20px;
-                padding: 15px;
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
             }
+        }
 
-            h2 {
-                font-size: 1.8rem;
-            }
+        .project-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #5a6fd8;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Avik Pramanick</h1>
-        <p>M.Tech Student, IIT Kharagpur</p>
-        <a href="https://github.com/Avikg" target="_blank">Visit My GitHub</a>
-        <a href="resume1.pdf" download>Download CV</a>
-    </header>
-    
-    <nav>
-        <a href="#education">Education</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    
-    
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>
-                <strong>M.Tech in Computer Science and Engineering</strong><br>
-                IIT Kharagpur, 2025<br>
-                CGPA: 8.93/10
-            </li>
-            <li>
-                <strong>B.Tech in Computer Science and Engineering</strong><br>
-                Govt. College of Engineering and Textile Technology, Serampore (MAKAUT)<br>
-                CGPA: 8.44/10
-            </li>
-        </ul>
-    </section>
-    
-    <section id="projects">
-        <h2><a href="https://github.com/Avikg/projects" target="_blank">Projects</a></h2>
-        <div class="project-category">
-            <h3>Major MTP Projects</h3>
-            <ul>
-                <li>
-                    <strong>Classification of TSS Signals for Association with hg-19 Cage Tags</strong><br>
-                    Web Server: <a href="https://cosmos.iitkgp.ac.in/CAGETag/" target="_blank">CAGE Tag Web Server</a>
-                </li>
-                <li>
-                    <strong>DeepPROTECTNeo</strong><br>
-                    Web Server: <a href="https://cosmos.iitkgp.ac.in/DeepPROTECTNeo/" target="_blank">DeepPROTECTNeo Web Server</a>
-                </li>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Avik Pramanick</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-        <div class="project-category">
-            <h3>Computing Lab Projects</h3>
-            <p class="project">- Linear Programming and Integer Programming</p>
-            <p class="project">- Multi-threading</p>
-            <p class="project">- Network Programming</p>
-            <p class="project">- OS Programming</p>
-            <p class="project">- Web Scrapping using Python</p>
-        </div>
-        <div class="project-category">
-            <h3>Design Lab Projects</h3>
-            <p class="project">- Chat Server with GPT-2 Chatbot</p>
-            <p class="project">- Crawling COVID Statistics and News</p>
-            <p class="project">- Deep Learning with PyTorch</p>
-            <p class="project">- Machine Learning using scikit-learn</p>
-        </div>
-        <div class="project-category">
-            <h3>Distributed Systems</h3>
-            <p class="project">- Distributed Database with Sharding and Consistency Using Write-Ahead Logging (WAL)</p>
-        </div>
-        <div class="project-category">
-            <h3>Deep Learning Projects</h3>
-            <p class="project">- Automatic Image Captioning</p>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Avik Pramanick</h1>
+                <p>ML Engineer & Computer Scientist | IIT Kharagpur M.Tech Graduate</p>
+                <p>Specializing in Deep Learning, Distributed Systems & Bioinformatics</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
-    
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Programming Languages: Python, C, Java, HTML, CSS, JavaScript, PHP</li>
-            <li>Frameworks & Libraries: PyTorch, TensorFlow, Keras, Scikit-Learn, Numpy, Pandas</li>
-            <li>Tools & Technologies: Docker, Git/GitHub, Socket Programming, Thread Programming</li>
-            <li>Databases: SQL, NoSQL</li>
-        </ul>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:avik.pramanick@gmail.com">avik.pramanick@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/avik-iitian/" target="_blank">Avik's LinkedIn</a></p>
-        <p>GitHub: <a href="https://github.com/Avikg" target="_blank">Avikg</a></p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2024 Avik Pramanick. All rights reserved. | <a href="https://github.com/Avikg">GitHub</a></p>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I'm a passionate Computer Scientist with a <span class="highlight">M.Tech from IIT Kharagpur (8.93/10 CGPA)</span> and 5+ years of industry experience. My expertise spans Machine Learning, Deep Learning, and Distributed Systems.</p>
+                    
+                    <p>I've successfully processed over <span class="highlight">5 million nucleotide sequences</span>, built scalable database systems handling <span class="highlight">1 million operations/second</span>, and developed AI models achieving <span class="highlight">97.4% accuracy</span>.</p>
+                    
+                    <p>Currently, I'm focused on bioinformatics applications and have co-authored research published on bioRxiv for personalized cancer vaccine design.</p>
+                </div>
+                <div>
+                    <div class="education-card">
+                        <div class="card-title">M.Tech in Computer Science</div>
+                        <div class="card-subtitle">Indian Institute of Technology, Kharagpur</div>
+                        <div class="card-date">2025 • CGPA: 8.93/10</div>
+                        <div class="card-description">
+                            <strong>Coursework:</strong> Machine Learning, Deep Learning, Complex Network Theory, Data Analytics, Distributed Systems
+                        </div>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="card-title">B.Tech in Computer Science</div>
+                        <div class="card-subtitle">Govt. College of Engineering and Textile Technology</div>
+                        <div class="card-date">2016 • CGPA: 8.44/10</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-card">
+                <div class="card-title">Assistant Engineer (IT&C)</div>
+                <div class="card-subtitle">West Bengal State Electricity Distribution Company Limited</div>
+                <div class="card-date">December 2017 - July 2023</div>
+                <div class="card-description">
+                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                        <li>Analyzed billing and electricity demand data for <strong>1,00,000+ consumers</strong>, resolving disputes and ensuring accurate bill generation</li>
+                        <li>Conducted electricity consumption analysis identifying high-demand areas, developing strategies that <strong>increased revenue by 30%</strong></li>
+                        <li>Collaborated with cross-functional teams implementing data-driven solutions, optimizing processes to <strong>improve collection rates by 27%</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2 class="section-title">Key Projects</h2>
+            
+            <div class="project-card">
+                <div class="card-title">TSS Signals Classification & CAGE Peaks Prediction</div>
+                <div class="card-subtitle">M.Tech Project - Prof. Pralay Mitra, IIT Kharagpur</div>
+                <div class="card-date">April 2024 - November 2024</div>
+                <div class="card-description">
+                    Processed <strong>5,23,329 nucleotide sequences</strong> from hg19 genome and CAGE peak data. Built a Bi-LSTM model achieving <strong>F1 Score of 79.43%</strong>. Developed two web servers for TSS prediction and neoepitope discovery for personalized cancer vaccines.
+                </div>
+                <div class="project-links">
+                    <a href="https://cosmos.iitkgp.ac.in/CAGETag/" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> TSS Prediction Server
+                    </a>
+                    <a href="https://cosmos.iitkgp.ac.in/DeepPROTECTNeo/" class="project-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> DeepPROTECTNeo Server
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-title">Replicated Database with Write-Ahead Logging (WAL)</div>
+                <div class="card-subtitle">Distributed Systems Project - Prof. Sandip Chakraborty</div>
+                <div class="card-date">February 2024 - April 2024</div>
+                <div class="card-description">
+                    Designed sharded database system with WAL ensuring <strong>98% state recovery</strong>, increasing throughput by <strong>40%</strong> and reducing downtime by <strong>95%</strong>. Built custom load balancer with consistent hashing handling <strong>1 million operations/second</strong>.
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-title">Fake News Detection Using ML & Deep Learning</div>
+                <div class="card-subtitle">Design Lab Project - Prof. Niloy Ganguly & Prof. Mainack Mondal</div>
+                <div class="card-date">February 2024 - April 2024</div>
+                <div class="card-description">
+                    Built comprehensive ML/DL models (Logistic Regression, KNN, SVM, DNN, CNN, LSTM, BERT) for COVID-19 post classification, achieving up to <strong>97.4% accuracy</strong> on 10,600+ sample dataset.
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-title">Automatic Image Captioning</div>
+                <div class="card-subtitle">Deep Learning Term Project - Prof. Pawan Goyal</div>
+                <div class="card-date">February 2024 - April 2024</div>
+                <div class="card-description">
+                    Developed CNN-based encoder (ResNet50) and LSTM decoder for caption generation. Achieved ROUGE-L: 0.269, CIDEr: 0.028, SPICE: 0.090 using Vision Transformers.
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming</h3>
+                    <p>Python, C, Java</p>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <h3>ML/DL Frameworks</h3>
+                    <p>TensorFlow, PyTorch, NumPy, Pandas</p>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Tools & Technologies</h3>
+                    <p>Docker, Git, Tableau, Flask</p>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <h3>Databases</h3>
+                    <p>SQL, NoSQL</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <a href="mailto:avik.pramanick@gmail.com">avik.pramanick@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <a href="tel:+918981230167">+91 8981230167</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/avik-iitian" target="_blank">linkedin.com/in/avik-iitian</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/Avikg" target="_blank">github.com/Avikg</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Avik Pramanick. All rights reserved.</p>
+            <p>Co-authored research published on bioRxiv | GATE CSE Qualified (2017, 2023)</p>
+        </div>
     </footer>
+
+    <script>
+        // Load Font Awesome if not already loaded
+        window.addEventListener('load', function() {
+            const checkIcons = () => {
+                const testIcon = document.querySelector('.fas');
+                if (testIcon && window.getComputedStyle(testIcon, ':before').content === 'none') {
+                    // Fallback if Font Awesome doesn't load
+                    const style = document.createElement('style');
+                    style.innerHTML = `
+                        .fas.fa-code:before { content: '</> '; }
+                        .fas.fa-robot:before { content: '🤖 '; }
+                        .fas.fa-tools:before { content: '🔧 '; }
+                        .fas.fa-database:before { content: '🗄️ '; }
+                        .fas.fa-envelope:before { content: '📧 '; }
+                        .fas.fa-phone:before { content: '📱 '; }
+                        .fab.fa-linkedin:before { content: '💼 '; }
+                        .fab.fa-github:before { content: '🐙 '; }
+                        .fas.fa-external-link-alt:before { content: '🔗 '; }
+                    `;
+                    document.head.appendChild(style);
+                }
+            };
+            
+            setTimeout(checkIcons, 1000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
