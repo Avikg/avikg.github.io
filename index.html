@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avik Pramanick</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,12 +20,65 @@
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
         .navbar {
@@ -35,6 +90,7 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: all 0.3s ease;
+            animation: slideDown 0.8s ease-out;
         }
 
         .nav-content {
@@ -62,17 +118,37 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: left 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            left: 0;
         }
 
         .nav-links a:hover {
             color: #667eea;
+            transform: translateY(-2px);
         }
 
         .hero {
             padding: 120px 0 80px;
             text-align: center;
             color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
         }
 
         .hero-content {
@@ -84,12 +160,18 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             font-weight: 700;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero p:last-of-type {
+            animation: fadeInUp 1s ease-out 0.6s forwards;
         }
 
         .cta-buttons {
@@ -97,6 +179,8 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
         }
 
         .btn {
@@ -106,11 +190,13 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
@@ -125,16 +211,31 @@
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .section {
             padding: 80px 0;
             background: white;
-            margin: 20px 0;
+            margin: 20px auto;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1300px;
+            width: 95%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section .container {
+            padding: 0 3rem;
+            max-width: 100%;
         }
 
         .section-title {
@@ -143,6 +244,14 @@
             margin-bottom: 3rem;
             color: #333;
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section.animate .section-title {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title::after {
@@ -151,22 +260,59 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 0;
             height: 4px;
             background: #667eea;
             border-radius: 2px;
+            transition: width 0.8s ease 0.3s;
+        }
+
+        .section.animate .section-title::after {
+            width: 60px;
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
+            padding: 0 2rem;
+            max-width: 100%;
+            margin: 0;
         }
 
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
+            text-align: left;
+            padding: 2rem;
+            background: rgba(248, 249, 255, 0.8);
+            border-radius: 15px;
+            margin: 0;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.animate .about-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .highlight:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .education-card, .experience-card, .project-card {
@@ -175,11 +321,22 @@
             border-radius: 15px;
             margin-bottom: 2rem;
             border-left: 5px solid #667eea;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        .section.animate .education-card, 
+        .section.animate .experience-card, 
+        .section.animate .project-card {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .education-card:hover, .experience-card:hover, .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-left-width: 8px;
         }
 
         .card-title {
@@ -206,6 +363,178 @@
             line-height: 1.6;
         }
 
+        .highlight-author {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .publication-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+            border: 1px solid #e0e6ff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section.animate .publication-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .publication-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
+        }
+
+        .publication-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .publication-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .publication-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .publication-authors {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .publication-abstract {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .publication-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .keyword {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .publication-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .publication-link {
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .publication-link.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .publication-link.secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .publication-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .doi-info {
+            color: #666;
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        .research-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            min-width: 60px;
+        }
+
+        .metric-content h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .metric-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -217,12 +546,33 @@
             padding: 2rem;
             background: #f8f9ff;
             border-radius: 15px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section.animate .skill-category {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .skill-icon {
             font-size: 3rem;
             color: #667eea;
             margin-bottom: 1rem;
+            display: block;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover .skill-icon {
+            animation: pulse 1s infinite;
         }
 
         .contact-grid {
@@ -236,17 +586,32 @@
             padding: 2rem;
             background: #f8f9ff;
             border-radius: 15px;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+        }
+
+        .section.animate .contact-item {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .contact-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .contact-item i {
             font-size: 2rem;
             color: #667eea;
             margin-bottom: 1rem;
+            display: block;
+            font-weight: 900;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            animation: float 2s ease-in-out infinite;
         }
 
         .contact-item a {
@@ -261,6 +626,27 @@
             background: rgba(0,0,0,0.1);
             border-radius: 20px;
             margin-top: 20px;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #5a6fd8;
         }
 
         @media (min-width: 1024px) {
@@ -305,15 +691,6 @@
                 font-size: 2.5rem;
             }
             
-            .section {
-                width: 98%;
-                margin: 20px auto;
-            }
-            
-            .section .container {
-                padding: 0 1rem;
-            }
-            
             .about-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -321,7 +698,7 @@
             }
             
             .about-text {
-                margin: 0;
+                margin-left: 0;
                 padding: 1.5rem;
                 text-align: left;
             }
@@ -330,34 +707,15 @@
                 flex-direction: column;
                 align-items: center;
             }
-        }
 
-        .project-links {
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .project-link {
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-
-        .project-link:hover {
-            background: #5a6fd8;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 0.2rem 0.5rem;
-            border-radius: 5px;
-            font-weight: 600;
+            .section {
+                width: 98%;
+                margin: 20px auto;
+            }
+            
+            .section .container {
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
@@ -369,6 +727,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -379,14 +738,14 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Avik Pramanick</h1>
-                <p>Data Scientist & Software Developer | IIT Kharagpur M.Tech</p>
+                <p>ML Engineer & Computer Scientist | IIT Kharagpur M.Tech Graduate</p>
                 <p>Specializing in Machine Learning, Distributed Systems</p>
                 <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-code"></i> View Projects
+                    <a href="#publications" class="btn btn-primary">
+                        <i class="fas fa-graduation-cap"></i> View Publications
                     </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i> Get In Touch
+                    <a href="#projects" class="btn btn-secondary">
+                        <i class="fas fa-code"></i> View Projects
                     </a>
                 </div>
             </div>
@@ -406,18 +765,92 @@
                 </div>
                 <div>
                     <div class="education-card">
-                        <div class="card-title">M.Tech in Computer Science</div>
+                        <div class="card-title">M.Tech in Computer Science & Engineering</div>
                         <div class="card-subtitle">Indian Institute of Technology, Kharagpur</div>
                         <div class="card-date">2025 • CGPA: 8.93/10</div>
                         <div class="card-description">
-                            <strong>Coursework:</strong> Machine Learning, Deep Learning, Complex Network Theory, Data Analytics, Distributed Systems
+                            <strong>Coursework:</strong> Machine Learning, Deep Learning, Complex Network, Data Analytics, Distributed Systems
                         </div>
                     </div>
                     
                     <div class="education-card">
-                        <div class="card-title">B.Tech in Computer Science</div>
+                        <div class="card-title">B.Tech in Computer Science & Engineering</div>
                         <div class="card-subtitle">Govt. College of Engineering and Textile Technology</div>
                         <div class="card-date">2016 • CGPA: 8.44/10</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <h2 class="section-title">Publications & Research</h2>
+            
+            <div class="publication-card">
+                <div class="publication-header">
+                    <div class="publication-badge">
+                        <i class="fas fa-file-alt"></i>
+                        <span>bioRxiv Preprint • 2025</span>
+                    </div>
+                    <div class="publication-status">
+                        <span class="status-badge">Published</span>
+                    </div>
+                </div>
+                
+                <h3 class="publication-title">
+                    DeepPROTECTNeo: A Deep learning-based Personalized and RV-guided Optimization tool leveraging TCR Epitope interaction using Context-aware Transformers
+                </h3>
+                
+                <div class="publication-authors">
+                    <strong>Authors:</strong> Debraj Das, Soumyadeep Bhaduri, <span class="highlight-author">Avik Pramanick</span>, Pralay Mitra
+                </div>
+                
+                <div class="publication-details">
+                    <div class="publication-abstract">
+                        <p><strong>Research Focus:</strong> Developed a transformer-based deep learning pipeline for personalized cancer vaccine design, leveraging TCR-epitope interactions for optimized neoepitope selection and therapeutic efficacy prediction.</p>
+                    </div>
+                    
+                    <div class="publication-keywords">
+                        <span class="keyword">Deep Learning</span>
+                        <span class="keyword">Transformers</span>
+                        <span class="keyword">Cancer Immunotherapy</span>
+                        <span class="keyword">Personalized Medicine</span>
+                        <span class="keyword">Bioinformatics</span>
+                    </div>
+                    
+                    <div class="publication-links">
+                        <a href="https://doi.org/10.1101/2025.01.04.631301" class="publication-link primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View on bioRxiv
+                        </a>
+                        <a href="https://cosmos.iitkgp.ac.in/DeepPROTECTNeo/" class="publication-link secondary" target="_blank">
+                            <i class="fas fa-globe"></i> Live Web Server
+                        </a>
+                        <div class="doi-info">
+                            <strong>DOI:</strong> 10.1101/2025.01.04.631301
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="research-metrics">
+                <div class="metric-item">
+                    <div class="metric-icon"><i class="fas fa-microscope"></i></div>
+                    <div class="metric-content">
+                        <h4>Research Impact</h4>
+                        <p>Contributing to personalized cancer immunotherapy through AI-driven neoepitope discovery</p>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon"><i class="fas fa-server"></i></div>
+                    <div class="metric-content">
+                        <h4>Practical Application</h4>
+                        <p>Developed and deployed web server for researchers worldwide</p>
+                    </div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-icon"><i class="fas fa-brain"></i></div>
+                    <div class="metric-content">
+                        <h4>Technical Innovation</h4>
+                        <p>Novel transformer architecture for TCR-epitope interaction modeling</p>
                     </div>
                 </div>
             </div>
@@ -462,6 +895,9 @@
             <div class="project-card">
                 <div class="card-title">Replicated Database with Write-Ahead Logging (WAL)</div>
                 <div class="card-subtitle">Distributed Systems Project - Prof. Sandip Chakraborty</div>
+            <div class="project-card">
+                <div class="card-title">Replicated Database with Write-Ahead Logging (WAL)</div>
+                <div class="card-subtitle">Distributed Systems Project - Prof. Sandip Chakraborty</div>
                 <div class="card-date">February 2024 - April 2024</div>
                 <div class="card-description">
                     Designed sharded database system with WAL ensuring <strong>98% state recovery</strong>, increasing throughput by <strong>40%</strong> and reducing downtime by <strong>95%</strong>. Built custom load balancer with consistent hashing handling <strong>1 million operations/second</strong>.
@@ -496,7 +932,7 @@
                     <p>Python, C, Java</p>
                 </div>
                 <div class="skill-category">
-                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
                     <h3>ML/DL Frameworks</h3>
                     <p>TensorFlow, PyTorch, NumPy, Pandas</p>
                 </div>
@@ -548,76 +984,93 @@
     </footer>
 
     <script>
-        // Load Font Awesome if not already loaded
-        window.addEventListener('load', function() {
-            const checkIcons = () => {
-                const testIcon = document.querySelector('.fas');
-                if (testIcon && window.getComputedStyle(testIcon, ':before').content === 'none') {
-                    // Fallback if Font Awesome doesn't load
-                    const style = document.createElement('style');
-                    style.innerHTML = `
-                        .fas.fa-code:before { content: '</> '; }
-                        .fas.fa-robot:before { content: '🤖 '; }
-                        .fas.fa-tools:before { content: '🔧 '; }
-                        .fas.fa-database:before { content: '🗄️ '; }
-                        .fas.fa-envelope:before { content: '📧 '; }
-                        .fas.fa-phone:before { content: '📱 '; }
-                        .fab.fa-linkedin:before { content: '💼 '; }
-                        .fab.fa-github:before { content: '🐙 '; }
-                        .fas.fa-external-link-alt:before { content: '🔗 '; }
-                    `;
-                    document.head.appendChild(style);
-                }
-            };
+        document.addEventListener('DOMContentLoaded', function() {
             
-            setTimeout(checkIcons, 1000);
-        });
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        setTimeout(function() {
+                            entry.target.classList.add('animate');
+                        }, index * 100);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                observer.observe(section);
+            });
+
+            // Smooth scrolling
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Hero parallax effect
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const heroContent = hero.querySelector('.hero-content');
+                if (heroContent) {
+                    hero.addEventListener('mousemove', function(e) {
+                        const rect = hero.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateX = (y - centerY) / centerY * -3;
+                        const rotateY = (x - centerX) / centerX * 3;
+                        
+                        heroContent.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+                    });
+
+                    hero.addEventListener('mouseleave', function() {
+                        heroContent.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
                     });
                 }
-            });
-        });
-
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                const currentScroll = window.scrollY;
+                
+                if (currentScroll > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                 }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
+                
+                if (currentScroll > lastScroll && currentScroll > 100) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+                
+                lastScroll = currentScroll;
+            }
         });
     </script>
 </body>
